@@ -4,21 +4,24 @@ const exitText = document.getElementById("exit-text")
 const iconEye = document.getElementById("icon-eye")
 const iconCopy = document.getElementById("icon-copy")
 
-function generatePass() {
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*(){}[]-+=,.;/?~^"
+function generatePassword() {
+    const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+    const numbers = "0123456789"
+    const simbols = "!@#$%&*(){}[]-+=,.;/?~^"
+    const characters = alphabet + numbers + simbols
     const maxCharacters = 16
-    let newPass = ""
+    let newPassword = ""
 
     for(let i = 0; i < maxCharacters; i ++) {
-        const randomChar = Math.floor(Math.random() * characters.length) 
-        newPass += characters.charAt(randomChar, randomChar + 1)
+        const randomCharacters = Math.floor(Math.random() * characters.length) 
+        newPassword += characters.charAt(randomCharacters, randomCharacters + 1)
 
-        inputPassword.value = newPass
-        exitText.innerHTML = `A sua senha possui <mark style="border-radius: 20px; padding: 4px">${maxCharacters}</mark> caracteres.`
+        inputPassword.value = newPassword
+        exitText.innerHTML = `A sua senha possui <mark style="border-radius: 3px; padding: 3px">${maxCharacters}</mark> caracteres.`
     }
 }
 
-function toggleIconPass() {
+function toggleTypePassword() {
     if(inputPassword.type === "password") {
         inputPassword.type = "text"
     }
@@ -28,13 +31,13 @@ function toggleIconPass() {
 }
 
 buttonGenerate.addEventListener("click", function() {
-    generatePass()
+    generatePassword()
     iconEye.style.display = "inline-block"
     iconCopy.style.display = "inline-block"
 })
 
 iconEye.addEventListener("click", function() {
-    toggleIconPass()
+    toggleTypePassword()
     iconEye.classList.toggle("fa-eye")
 })
 
